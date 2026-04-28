@@ -152,27 +152,6 @@ body {
 - ✅ Safari 14+
 - ✅ Opera 76+
 
-## 📦 Requisitos
-
-Nenhum! A aplicação é totalmente standalone e não requer dependências externas.
-
-## 🌐 Deploy Online (Grátis)
-
-Quer deixar sua aplicação online para o mundo acessar? Temos um **guia passo-a-passo completo**!
-
-**[Guia Completo: Deploy no Vercel →](docs/DEPLOY_VERCEL.md)**
-
-Neste guia você aprenderá:
-- Como configurar Git e repositório GitHub
-- Como conectar com Vercel
-- Como fazer deploy automático
-- Como compartilhar seu projeto
-- Dicas profissionais
-
-**Resultado:** Sua app online em minutos, totalmente grátis!
-
-Exemplo: `https://seu-usuario.vercel.app`
-
 ## 💡 Ideias de Expansão
 
 - [x] ✨ Tela de vitória elegante com animações
@@ -192,14 +171,3 @@ Exemplo: `https://seu-usuario.vercel.app`
 - [ ] Trilha visual ao arremessar
 - [ ] Indicador de força de arremesso
 
-## 📄 Licença
-
-Livre para uso pessoal e educacional.
-
-## 👨‍💻 Autor
-
-Desenvolvido como exemplo de projeto web profissional.
-
----
-
-**Divirta-se observando a batalha épica entre Pedra, Papel e Tesoura!** 🎮✨
