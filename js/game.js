@@ -30,6 +30,16 @@ class Game {
         if (typeof window.updateResponsiveScale === 'function') {
             window.updateResponsiveScale(this.canvas.width, this.canvas.height);
         }
+        // Se houver partículas já criadas, ajustar suas velocidades pelo fator calculado
+        if (this.particles && this.particles.length && window._velocityScaleFactor && window._velocityScaleFactor !== 1) {
+            const f = window._velocityScaleFactor;
+            for (let p of this.particles) {
+                p.vx *= f;
+                p.vy *= f;
+            }
+            // resetar o fator para evitar reaplicação múltipla
+            window._velocityScaleFactor = 1;
+        }
     }
 
     /**

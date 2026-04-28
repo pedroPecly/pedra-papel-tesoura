@@ -38,7 +38,17 @@ function updateResponsiveScale(width, height) {
     COLLISION_DISTANCE = Math.round(PARTICLE_RADIUS * 2.2);
 
     // Velocidade base proporcional à dimensão (maiores telas -> velocidades levemente maiores)
-    DEFAULT_VELOCITY_RANGE = Math.max(2, Math.min(8, Math.round(minDim * 0.004)));
+    const baseRange = Math.max(2, Math.min(8, Math.round(minDim * 0.004)));
+
+    // Ajuste por devicePixelRatio (dispositivos móveis com alta DPR tendem a reduzir percepção de velocidade)
+    const dpi = (typeof window !== 'undefined' && window.devicePixelRatio) ? Math.max(1, Math.round(window.devicePixelRatio)) : 1;
+
+    const newRange = Math.max(2, Math.min(12, Math.round(baseRange * dpi)));
+
+    // Calcular fator de escala relativa para ajustar partículas existentes
+    const oldRange = DEFAULT_VELOCITY_RANGE || 1;
+    DEFAULT_VELOCITY_RANGE = newRange;
+    window._velocityScaleFactor = DEFAULT_VELOCITY_RANGE / oldRange;
 }
 
 // Exportar para escopo global (disponível às outras scripts no navegador)
