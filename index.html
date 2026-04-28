@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aplicação visual automática de Pedra, Papel e Tesoura com emojis se movendo pela tela">
+    <title>Pedra, Papel e Tesoura - Automático</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <canvas id="gameCanvas"></canvas>
+        
+        <!-- Painel de Estatísticas -->
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-emoji">🪨</div>
+                <div class="stat-label">Pedras:</div>
+                <div class="stat-count" id="stoneCount">30</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-emoji">📄</div>
+                <div class="stat-label">Papéis:</div>
+                <div class="stat-count" id="paperCount">30</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-emoji">✂️</div>
+                <div class="stat-label">Tesouras:</div>
+                <div class="stat-count" id="scissorsCount">30</div>
+            </div>
+        </div>
+
+        <!-- Painel de Informações -->
+        <div class="info">
+            <strong>Regras:</strong><br>
+            🪨 Pedra vence ✂️ Tesoura<br>
+            ✂️ Tesoura vence 📄 Papel<br>
+            📄 Papel vence 🪨 Pedra<br><br>
+            Quando dois se tocam, o perdedor vira vencedor!
+        </div>
+
+        <!-- Painel de Controles -->
+        <div class="controls">
+            <button id="resetBtn" class="btn" title="Reiniciar o jogo">🔄 Reiniciar</button>
+            <button id="pauseBtn" class="btn" title="Pausar/Retomar a simulação">⏸️ Pausar</button>
+            <span id="winner" class="winner-text"></span>
+        </div>
+
+        <!-- Tela de Vitória (Modal) -->
+        <div id="victoryModal" class="victory-modal hidden">
+            <div class="victory-content">
+                <div class="victory-header">
+                    <h1>🎉 VITÓRIA! 🎉</h1>
+                </div>
+                <div class="victory-body">
+                    <div class="victory-emoji" id="victoryEmoji"></div>
+                    <p class="victory-message">
+                        <span id="victoryType"></span> venceu!
+                    </p>
+                    <p class="victory-subtitle">Dominou toda a tela</p>
+                </div>
+                <div class="victory-footer">
+                    <button id="victoryRestartBtn" class="victory-btn">
+                        🔄 Jogar Novamente
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/constants.js"></script>
+    <script src="js/particle.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/input-manager.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
