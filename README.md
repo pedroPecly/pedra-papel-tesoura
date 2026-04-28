@@ -133,38 +133,6 @@ Edite o array `EMOJIS` em `js/constants.js`:
 const EMOJIS = ['🌟', '🎯', '⚡']; // Seus emojis aqui
 ```
 
-## 📚 Documentação Técnica
-
-Para desenvolvedores que desejam entender ou expandir o projeto:
-
-- **[COLLISION_SYSTEM.md](docs/COLLISION_SYSTEM.md)** - Sistema de física e colisões em detalhes
-  - Algoritmo de detecção de colisão
-  - Cálculo de impulso
-  - Regras de transformação
-  - Performance e otimizações
-
-- **[INPUT_SYSTEM.md](docs/INPUT_SYSTEM.md)** - Sistema de entrada com mouse
-  - Arquitetura do InputManager
-  - Fluxo de interação
-  - Integração com partículas
-
-- **[THROW_MECHANICS.md](docs/THROW_MECHANICS.md)** - Sistema de arremesso realista 🎯
-  - Cálculo de velocidade do mouse
-  - Força e direção do arremesso
-  - Ajustes de multiplicador
-  - Exemplos e troubleshooting
-
-- **[VICTORY_SYSTEM.md](docs/VICTORY_SYSTEM.md)** - Sistema de tela de vitória
-  - Animações elegantes
-  - Detecção de vencedor
-  - Estilo responsivo
-  - Futuras expansões
-
-- **[CONTRIBUTING.md](docs/CONTRIBUTING.md)** - Guia de contribuição
-  - Padrões de código
-  - Como adicionar novos recursos
-  - Testes e debugging
-
 ## 🎨 Customização Avançada
 
 ### Mudar cores
