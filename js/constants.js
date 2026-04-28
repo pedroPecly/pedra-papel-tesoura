@@ -16,14 +16,33 @@ const EMOJIS = ['🪨', '📄', '✂️'];
 // Quantidade inicial de cada tipo
 const INITIAL_COUNT = 30;
 
-// Tamanho do raio das partículas em pixels
-const PARTICLE_RADIUS = 15;
+// Valores dimensionais (serão recalculados dinamicamente)
+let PARTICLE_RADIUS = 15; // px (valor base)
+let COLLISION_DISTANCE = PARTICLE_RADIUS * 2.2;
+let DEFAULT_VELOCITY_RANGE = 4; // px per frame (base)
 
-// Distância para detectar colisão
-const COLLISION_DISTANCE = PARTICLE_RADIUS * 2.2;
+/**
+ * Atualiza escalas responsivas com base no tamanho do canvas/janela
+ * @param {number} width
+ * @param {number} height
+ */
+function updateResponsiveScale(width, height) {
+    // Base para escala: menor dimensão da viewport
+    const minDim = Math.min(Math.max(width, 200), Math.max(height, 200));
 
-// Velocidade padrão das partículas (vx e vy)
-const DEFAULT_VELOCITY_RANGE = 4;
+    // Calcular um raio proporcional: entre 8px e 36px
+    const radius = Math.round(Math.max(8, Math.min(36, Math.floor(minDim * 0.02))));
+    PARTICLE_RADIUS = radius;
+
+    // Distância de colisão proporcional ao raio
+    COLLISION_DISTANCE = Math.round(PARTICLE_RADIUS * 2.2);
+
+    // Velocidade base proporcional à dimensão (maiores telas -> velocidades levemente maiores)
+    DEFAULT_VELOCITY_RANGE = Math.max(2, Math.min(8, Math.round(minDim * 0.004)));
+}
+
+// Exportar para escopo global (disponível às outras scripts no navegador)
+window.updateResponsiveScale = updateResponsiveScale;
 
 // Configuração de FPS (requestAnimationFrame é ~60fps)
 const FPS_TARGET = 60;

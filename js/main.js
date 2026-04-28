@@ -18,10 +18,13 @@ const victoryModal = document.getElementById('victoryModal');
 const victoryEmoji = document.getElementById('victoryEmoji');
 const victoryType = document.getElementById('victoryType');
 const victoryRestartBtn = document.getElementById('victoryRestartBtn');
+const victoryCountdownEl = document.getElementById('victoryCountdown');
 
 // Instâncias
 let game;
 let inputManager;
+// Timers para reinício automático
+let victoryCountdownInterval = null;
 
 /**
  * Atualiza a exibição das estatísticas
@@ -93,11 +96,17 @@ function handlePause() {
 function showVictoryModal(emoji) {
     victoryEmoji.textContent = emoji;
     victoryType.textContent = getVictoryTypeName(emoji);
+    // Se já está visível, não re-iniciar o timer
+    if (!victoryModal.classList.contains('hidden')) return;
+
     victoryModal.classList.remove('hidden');
-    
+
     // Pausar jogo ao mostrar vitória
     game.isPaused = true;
     pauseBtn.textContent = '▶️ Retomar';
+
+    // Iniciar contagem regressiva para reiniciar automaticamente
+    startVictoryAutoRestart(5);
 }
 
 /**
@@ -105,6 +114,7 @@ function showVictoryModal(emoji) {
  */
 function hideVictoryModal() {
     victoryModal.classList.add('hidden');
+    clearVictoryAutoRestart();
 }
 
 /**
@@ -142,6 +152,8 @@ function init() {
     resetBtn.addEventListener('click', handleReset);
     pauseBtn.addEventListener('click', handlePause);
     victoryRestartBtn.addEventListener('click', handleVictoryRestart);
+    // Se o usuário clicar no botão manualmente, garantir limpeza dos timers
+    victoryRestartBtn.addEventListener('click', () => clearVictoryAutoRestart());
     
     // Iniciar loop de animação
     animate();
@@ -151,8 +163,37 @@ function init() {
  * Handler para reiniciar a partir do modal de vitória
  */
 function handleVictoryRestart() {
+    // Limpar timers e reiniciar
+    clearVictoryAutoRestart();
     hideVictoryModal();
     handleReset();
+}
+
+/**
+ * Inicia a contagem regressiva exibida no modal e chama reinício ao final
+ * @param {number} seconds
+ */
+function startVictoryAutoRestart(seconds = 5) {
+    clearVictoryAutoRestart();
+    let remaining = Math.max(1, Math.floor(seconds));
+    if (victoryCountdownEl) victoryCountdownEl.textContent = remaining;
+
+    victoryCountdownInterval = setInterval(() => {
+        remaining -= 1;
+        if (victoryCountdownEl) victoryCountdownEl.textContent = Math.max(0, remaining);
+        if (remaining <= 0) {
+            clearVictoryAutoRestart();
+            handleVictoryRestart();
+        }
+    }, 1000);
+}
+
+function clearVictoryAutoRestart() {
+    if (victoryCountdownInterval) {
+        clearInterval(victoryCountdownInterval);
+        victoryCountdownInterval = null;
+    }
+    if (victoryCountdownEl) victoryCountdownEl.textContent = '5';
 }
 
 // Iniciar aplicação quando o DOM estiver pronto

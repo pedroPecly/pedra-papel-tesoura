@@ -26,6 +26,10 @@ class Game {
     resizeCanvas() {
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
+        // Atualizar escala responsiva das constantes
+        if (typeof window.updateResponsiveScale === 'function') {
+            window.updateResponsiveScale(this.canvas.width, this.canvas.height);
+        }
     }
 
     /**
