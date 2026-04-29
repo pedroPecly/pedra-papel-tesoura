@@ -217,4 +217,65 @@ class Game {
         this.particles.forEach(p => counts[p.type]++);
         return counts;
     }
+
+    /**
+     * Aumenta a velocidade de todas as partículas
+     * Incrementa o multiplicador global de velocidade
+     * @returns {number} Novo valor do multiplicador
+     */
+    increaseVelocity() {
+        const newMultiplier = window.getVelocityMultiplier() + VELOCITY_INCREMENT;
+        window.setVelocityMultiplier(newMultiplier);
+
+        // Atualizar velocidades de todas as partículas baseadas no novo multiplicador
+        this.particles.forEach(p => p.updateVelocityByMultiplier());
+
+        return window.getVelocityMultiplier();
+    }
+
+    /**
+     * Diminui a velocidade de todas as partículas
+     * Decrementa o multiplicador global de velocidade
+     * @returns {number} Novo valor do multiplicador
+     */
+    decreaseVelocity() {
+        const newMultiplier = window.getVelocityMultiplier() - VELOCITY_INCREMENT;
+        window.setVelocityMultiplier(newMultiplier);
+
+        // Atualizar velocidades de todas as partículas baseadas no novo multiplicador
+        this.particles.forEach(p => p.updateVelocityByMultiplier());
+
+        return window.getVelocityMultiplier();
+    }
+
+    /**
+     * Reseta a velocidade para o padrão
+     * @returns {number} Novo valor do multiplicador (1.0)
+     */
+    resetVelocity() {
+        window.setVelocityMultiplier(1.0);
+
+        // Atualizar velocidades de todas as partículas baseadas no novo multiplicador
+        this.particles.forEach(p => p.updateVelocityByMultiplier());
+
+        return 1.0;
+    }
+
+    /**
+     * Obtém informações sobre a velocidade atual
+     * @returns {Object} Objeto com {multiplier, percentage, canIncrease, canDecrease}
+     */
+    getVelocityInfo() {
+        const multiplier = window.getVelocityMultiplier();
+        const percentage = Math.round(multiplier * 100);
+        const canIncrease = multiplier < MAX_VELOCITY_MULTIPLIER;
+        const canDecrease = multiplier > MIN_VELOCITY_MULTIPLIER;
+
+        return {
+            multiplier: multiplier.toFixed(2),
+            percentage,
+            canIncrease,
+            canDecrease
+        };
+    }
 }

@@ -8,6 +8,9 @@
 const canvas = document.getElementById('gameCanvas');
 const resetBtn = document.getElementById('resetBtn');
 const pauseBtn = document.getElementById('pauseBtn');
+const increaseVelocityBtn = document.getElementById('increaseVelocityBtn');
+const decreaseVelocityBtn = document.getElementById('decreaseVelocityBtn');
+const velocityValue = document.getElementById('velocityValue');
 const winnerText = document.getElementById('winner');
 const stoneCountEl = document.getElementById('stoneCount');
 const paperCountEl = document.getElementById('paperCount');
@@ -90,6 +93,60 @@ function handlePause() {
 }
 
 /**
+ * Aumenta a velocidade de todas as partículas
+ */
+function handleIncreaseVelocity() {
+    game.increaseVelocity();
+    updateVelocityDisplay();
+}
+
+/**
+ * Diminui a velocidade de todas as partículas
+ */
+function handleDecreaseVelocity() {
+    game.decreaseVelocity();
+    updateVelocityDisplay();
+}
+
+/**
+ * Atualiza a exibição do indicador de velocidade
+ * Anima o valor quando muda
+ */
+function updateVelocityDisplay() {
+    const velocityInfo = game.getVelocityInfo();
+    
+    // Atualizar texto de velocidade
+    velocityValue.textContent = velocityInfo.percentage + '%';
+    
+    // Adicionar animação de pulse
+    velocityValue.classList.remove('updated');
+    // Forçar reflow para reiniciar a animação
+    void velocityValue.offsetWidth;
+    velocityValue.classList.add('updated');
+    
+    // Desabilitar/habilitar botões conforme necessário
+    increaseVelocityBtn.disabled = !velocityInfo.canIncrease;
+    decreaseVelocityBtn.disabled = !velocityInfo.canDecrease;
+    
+    // Ajustar aparência dos botões desabilitados
+    if (!velocityInfo.canIncrease) {
+        increaseVelocityBtn.style.opacity = '0.5';
+        increaseVelocityBtn.style.cursor = 'not-allowed';
+    } else {
+        increaseVelocityBtn.style.opacity = '1';
+        increaseVelocityBtn.style.cursor = 'pointer';
+    }
+    
+    if (!velocityInfo.canDecrease) {
+        decreaseVelocityBtn.style.opacity = '0.5';
+        decreaseVelocityBtn.style.cursor = 'not-allowed';
+    } else {
+        decreaseVelocityBtn.style.opacity = '1';
+        decreaseVelocityBtn.style.cursor = 'pointer';
+    }
+}
+
+/**
  * Mostra o modal de vitória
  * @param {string} emoji - Emoji do vencedor
  */
@@ -151,9 +208,14 @@ function init() {
     // Adicionar event listeners
     resetBtn.addEventListener('click', handleReset);
     pauseBtn.addEventListener('click', handlePause);
+    increaseVelocityBtn.addEventListener('click', handleIncreaseVelocity);
+    decreaseVelocityBtn.addEventListener('click', handleDecreaseVelocity);
     victoryRestartBtn.addEventListener('click', handleVictoryRestart);
     // Se o usuário clicar no botão manualmente, garantir limpeza dos timers
     victoryRestartBtn.addEventListener('click', () => clearVictoryAutoRestart());
+    
+    // Inicializar exibição de velocidade
+    updateVelocityDisplay();
     
     // Iniciar loop de animação
     animate();

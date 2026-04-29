@@ -56,3 +56,15 @@ window.updateResponsiveScale = updateResponsiveScale;
 
 // Configuração de FPS (requestAnimationFrame é ~60fps)
 const FPS_TARGET = 60;
+
+// Multiplicador de velocidade global (permite aumentar/diminuir velocidade dos objetos)
+let VELOCITY_MULTIPLIER = 1.0; // Começa em 1x (velocidade normal)
+const MIN_VELOCITY_MULTIPLIER = 0.5; // Mínimo 0.5x
+const MAX_VELOCITY_MULTIPLIER = 3.0; // Máximo 3.0x
+const VELOCITY_INCREMENT = 0.25; // Incremento de 0.25x a cada clique
+
+// Exportar para escopo global
+window.getVelocityMultiplier = () => VELOCITY_MULTIPLIER;
+window.setVelocityMultiplier = (value) => {
+    VELOCITY_MULTIPLIER = Math.max(MIN_VELOCITY_MULTIPLIER, Math.min(MAX_VELOCITY_MULTIPLIER, value));
+};

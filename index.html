@@ -30,19 +30,21 @@
             </div>
         </div>
 
-        <!-- Painel de Informações -->
-        <div class="info">
-            <strong>Regras:</strong><br>
-            🪨 Pedra vence ✂️ Tesoura<br>
-            ✂️ Tesoura vence 📄 Papel<br>
-            📄 Papel vence 🪨 Pedra<br><br>
-            Quando dois se tocam, o perdedor vira vencedor!
-        </div>
-
         <!-- Painel de Controles -->
         <div class="controls">
             <button id="resetBtn" class="btn" title="Reiniciar o jogo">🔄 Reiniciar</button>
             <button id="pauseBtn" class="btn" title="Pausar/Retomar a simulação">⏸️ Pausar</button>
+            
+            <!-- Controles de Velocidade -->
+            <div class="velocity-controls">
+                <button id="decreaseVelocityBtn" class="btn btn-velocity" title="Diminuir velocidade">🔽</button>
+                <div class="velocity-display">
+                    <span id="velocityLabel">Velocidade:</span>
+                    <span id="velocityValue" class="velocity-value">100%</span>
+                </div>
+                <button id="increaseVelocityBtn" class="btn btn-velocity" title="Aumentar velocidade">🔼</button>
+            </div>
+
             <span id="winner" class="winner-text"></span>
         </div>
 

@@ -16,11 +16,25 @@ class Particle {
         this.type = type;
         
         // Velocidade aleatória inicial
-        this.vx = (Math.random() - 0.5) * DEFAULT_VELOCITY_RANGE;
-        this.vy = (Math.random() - 0.5) * DEFAULT_VELOCITY_RANGE;
+        this.vxBase = (Math.random() - 0.5) * DEFAULT_VELOCITY_RANGE;
+        this.vyBase = (Math.random() - 0.5) * DEFAULT_VELOCITY_RANGE;
+        
+        // Velocidade atual (será escalada pelo multiplicador global)
+        this.vx = this.vxBase;
+        this.vy = this.vyBase;
         
         // Estado de controle pelo usuário
         this.isControlled = false;
+    }
+
+    /**
+     * Atualiza a velocidade atual com base no multiplicador global
+     * Deve ser chamada antes de update() para aplicar o multiplicador
+     */
+    updateVelocityByMultiplier() {
+        const multiplier = window.getVelocityMultiplier ? window.getVelocityMultiplier() : 1.0;
+        this.vx = this.vxBase * multiplier;
+        this.vy = this.vyBase * multiplier;
     }
 
     /**
