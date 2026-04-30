@@ -6,8 +6,6 @@
 
 // Referências do DOM
 const canvas = document.getElementById('gameCanvas');
-const resetBtn = document.getElementById('resetBtn');
-const pauseBtn = document.getElementById('pauseBtn');
 const increaseVelocityBtn = document.getElementById('increaseVelocityBtn');
 const decreaseVelocityBtn = document.getElementById('decreaseVelocityBtn');
 const velocityValue = document.getElementById('velocityValue');
@@ -20,7 +18,6 @@ const scissorsCountEl = document.getElementById('scissorsCount');
 const victoryModal = document.getElementById('victoryModal');
 const victoryEmoji = document.getElementById('victoryEmoji');
 const victoryType = document.getElementById('victoryType');
-const victoryRestartBtn = document.getElementById('victoryRestartBtn');
 const victoryCountdownEl = document.getElementById('victoryCountdown');
 
 // Instâncias
@@ -72,24 +69,16 @@ function animate() {
 /**
  * Reseta o jogo
  */
-function handleReset() {
+function resetGame() {
     game.initParticles();
     game.isPaused = false;
-    pauseBtn.textContent = '⏸️ Pausar';
-    
+
     // Resetar estado de entrada
     inputManager.deselectParticle();
-    
+
     updateStats();
     updateWinner();
-}
-
-/**
- * Toggle pausa
- */
-function handlePause() {
-    game.togglePause();
-    pauseBtn.textContent = game.isPaused ? '▶️ Retomar' : '⏸️ Pausar';
+    updateVelocityDisplay();
 }
 
 /**
@@ -160,7 +149,6 @@ function showVictoryModal(emoji) {
 
     // Pausar jogo ao mostrar vitória
     game.isPaused = true;
-    pauseBtn.textContent = '▶️ Retomar';
 
     // Iniciar contagem regressiva para reiniciar automaticamente
     startVictoryAutoRestart(5);
@@ -198,24 +186,12 @@ function init() {
     // Criar gerenciador de entrada
     inputManager = new InputManager(canvas, game);
     
-    // Inicializar partículas
-    game.initParticles();
-    
-    // Atualizar UI
-    updateStats();
-    updateWinner();
+    // Inicializar jogo
+    resetGame();
     
     // Adicionar event listeners
-    resetBtn.addEventListener('click', handleReset);
-    pauseBtn.addEventListener('click', handlePause);
     increaseVelocityBtn.addEventListener('click', handleIncreaseVelocity);
     decreaseVelocityBtn.addEventListener('click', handleDecreaseVelocity);
-    victoryRestartBtn.addEventListener('click', handleVictoryRestart);
-    // Se o usuário clicar no botão manualmente, garantir limpeza dos timers
-    victoryRestartBtn.addEventListener('click', () => clearVictoryAutoRestart());
-    
-    // Inicializar exibição de velocidade
-    updateVelocityDisplay();
     
     // Iniciar loop de animação
     animate();
@@ -228,7 +204,7 @@ function handleVictoryRestart() {
     // Limpar timers e reiniciar
     clearVictoryAutoRestart();
     hideVictoryModal();
-    handleReset();
+    resetGame();
 }
 
 /**

@@ -12,7 +12,7 @@ Uma aplicação web interativa que simula uma batalha automática entre emojis d
 - **Controle com mouse** - Clique e arraste um emoji para controlá-lo manualmente
 - **Contador em tempo real** de cada tipo
 - **Detector de vencedor** quando um tipo domina a tela
-- **Controles interativos** para pausar e reiniciar
+- **Controles de velocidade** com indicador percentual
 - **Design responsivo** que funciona em qualquer tamanho de tela
 - **Performance otimizada** com Canvas 2D
 
@@ -42,8 +42,7 @@ pedra papel tesoura/
 
 ### Controles
 
-- **🔄 Reiniciar** - Recomeça a simulação com 30 de cada tipo
-- **⏸️ Pausar** - Pausa/Retoma a simulação
+- **🔽/🔼 Velocidade** - Ajusta a velocidade da simulação
 - **Mouse** - Clique e arraste um emoji para controlá-lo com o mouse
   - Posicione o mouse sobre um emoji (o cursor muda para "grab")
   - Clique e segure para selecionar
@@ -60,7 +59,7 @@ Quando um tipo de emoji domina toda a tela:
 - ✨ Uma tela de vitória elegante com animações aparece
 - 🎉 O emoji vencedor é exibido em grande tamanho
 - ⏸️ O jogo pausa automaticamente
-- 🔄 Clique em **"Jogar Novamente"** para reiniciar
+- ⏱️ Reinício automático após a contagem regressiva
 
 ## 🎯 Regras do Jogo
 

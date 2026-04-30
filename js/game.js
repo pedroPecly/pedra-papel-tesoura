@@ -54,7 +54,9 @@ class Game {
             for (let i = 0; i < INITIAL_COUNT; i++) {
                 const x = Math.random() * (this.canvas.width - PARTICLE_RADIUS * 2) + PARTICLE_RADIUS;
                 const y = Math.random() * (this.canvas.height - PARTICLE_RADIUS * 2) + PARTICLE_RADIUS;
-                this.particles.push(new Particle(x, y, type));
+                const particle = new Particle(x, y, type);
+                particle.updateVelocityByMultiplier();
+                this.particles.push(particle);
             }
         }
     }
@@ -199,13 +201,6 @@ class Game {
 
         // Desenhar partículas
         this.particles.forEach(p => p.draw(this.ctx));
-    }
-
-    /**
-     * Toggle do pausa
-     */
-    togglePause() {
-        this.isPaused = !this.isPaused;
     }
 
     /**

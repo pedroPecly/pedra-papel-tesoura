@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
 /* ============================================================
    RESET E CONFIGURAÇÕES GLOBAIS
    ============================================================ */
@@ -57,11 +59,11 @@ canvas {
     left: calc(var(--base) * 1.5);
     background: rgba(0, 0, 0, 0.8);
     color: white;
-    padding: calc(var(--base) * 1.8);
-    border-radius: calc(var(--base) * 1.5);
-    font-size: calc(var(--base) * 1.2);
+    padding: calc(var(--base) * 1.4);
+    border-radius: calc(var(--base) * 1.2);
+    font-size: calc(var(--base) * 1.0);
     z-index: 10;
-    min-width: calc(var(--base) * 14);
+    min-width: calc(var(--base) * 12);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -74,9 +76,9 @@ canvas {
 }
 
 .stat-emoji {
-    font-size: calc(var(--base) * 2.2);
-    margin-right: calc(var(--base) * 1.2);
-    min-width: calc(var(--base) * 2.8);
+    font-size: calc(var(--base) * 1.9);
+    margin-right: calc(var(--base) * 0.9);
+    min-width: calc(var(--base) * 2.4);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -90,9 +92,9 @@ canvas {
 
 .stat-count {
     color: #4ade80;
-    font-size: calc(var(--base) * 1.8);
+    font-size: calc(var(--base) * 1.5);
     font-weight: bold;
-    min-width: calc(var(--base) * 4.2);
+    min-width: calc(var(--base) * 3.6);
     text-align: right;
 }
 
@@ -145,6 +147,41 @@ canvas {
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     max-width: 95vw;
+}
+
+/* ============================================================
+   LINKS LEGAIS (DISCRETOS)
+   ============================================================ */
+
+.legal-dock {
+    position: absolute;
+    bottom: calc(var(--base) * 1.2);
+    right: calc(var(--base) * 1.2);
+    display: flex;
+    align-items: center;
+    gap: calc(var(--base) * 0.5);
+    background: rgba(0, 0, 0, 0.55);
+    color: rgba(255, 255, 255, 0.8);
+    padding: calc(var(--base) * 0.5) calc(var(--base) * 0.9);
+    border-radius: calc(var(--base) * 0.9);
+    font-size: calc(var(--base) * 0.75);
+    z-index: 10;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(6px);
+}
+
+.legal-dock a {
+    color: rgba(219, 234, 254, 0.95);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.legal-dock a:hover {
+    color: #ffd700;
+}
+
+.legal-dock span {
+    opacity: 0.35;
 }
 
 /* ============================================================
@@ -249,11 +286,14 @@ canvas {
 .winner-text {
     font-size: calc(var(--base) * 1.6);
     font-weight: bold;
-    min-width: calc(var(--base) * 11);
     text-align: center;
     color: #ffd700;
     text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
     animation: pulse 1s infinite;
+}
+
+.winner-text:empty {
+    display: none;
 }
 
 @keyframes pulse {
@@ -334,6 +374,14 @@ canvas {
         font-size: 12px;
         min-width: auto;
     }
+
+    .legal-dock {
+        top: 10px;
+        bottom: auto;
+        right: 10px;
+        font-size: 10px;
+        padding: 4px 8px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -395,6 +443,161 @@ canvas {
     .winner-text {
         font-size: 10px;
         min-width: auto;
+    }
+
+    .legal-dock {
+        top: 8px;
+        right: 8px;
+        font-size: 9px;
+        gap: 4px;
+    }
+}
+
+/* ============================================================
+   PAGINAS LEGAIS
+   ============================================================ */
+
+body.legal-page {
+    background: radial-gradient(circle at top, rgba(102, 126, 234, 0.35), transparent 55%),
+                linear-gradient(150deg, #0f172a 0%, #1e1b4b 50%, #111827 100%);
+    color: #e2e8f0;
+    font-family: 'Space Grotesk', sans-serif;
+    overflow: auto;
+}
+
+.legal-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: clamp(24px, 4vw, 56px);
+}
+
+.legal-header {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 2vw, 24px);
+    margin-bottom: clamp(20px, 3vw, 32px);
+}
+
+.legal-brand h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(28px, 3vw, 40px);
+    margin: 0 0 6px 0;
+    color: #f8fafc;
+}
+
+.legal-brand p {
+    margin: 0;
+    color: rgba(226, 232, 240, 0.75);
+    font-size: clamp(14px, 1.2vw, 16px);
+}
+
+.legal-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.legal-nav a {
+    text-decoration: none;
+    color: #dbeafe;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    background: rgba(15, 23, 42, 0.45);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.legal-nav a[aria-current='page'] {
+    border-color: rgba(250, 204, 21, 0.6);
+    color: #fde68a;
+    background: rgba(250, 204, 21, 0.12);
+}
+
+.legal-card {
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 20px;
+    padding: clamp(20px, 3vw, 32px);
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.5);
+    animation: legalRise 0.5s ease;
+}
+
+.legal-card h2 {
+    font-size: clamp(18px, 2vw, 24px);
+    margin: 0 0 10px 0;
+    color: #f8fafc;
+}
+
+.legal-card p {
+    margin: 0 0 14px 0;
+    line-height: 1.7;
+    color: rgba(226, 232, 240, 0.86);
+}
+
+.legal-card a {
+    color: #bae6fd;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.legal-card a:hover {
+    color: #fde68a;
+}
+
+.legal-list {
+    margin: 0 0 12px 0;
+    padding-left: 18px;
+    color: rgba(226, 232, 240, 0.82);
+}
+
+.legal-list li {
+    margin-bottom: 6px;
+}
+
+.legal-muted {
+    color: rgba(148, 163, 184, 0.9);
+    font-size: 13px;
+}
+
+.legal-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 18px;
+    color: rgba(148, 163, 184, 0.8);
+    font-size: 13px;
+}
+
+.legal-footer a {
+    color: #bae6fd;
+    text-decoration: none;
+}
+
+@keyframes legalRise {
+    from {
+        transform: translateY(12px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 720px) {
+    .legal-container {
+        padding: 22px 18px 32px;
+    }
+
+    .legal-nav a {
+        padding: 7px 12px;
+        font-size: 13px;
+    }
+
+    .legal-card {
+        border-radius: 16px;
     }
 }
 

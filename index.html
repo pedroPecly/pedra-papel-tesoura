@@ -32,9 +32,6 @@
 
         <!-- Painel de Controles -->
         <div class="controls">
-            <button id="resetBtn" class="btn" title="Reiniciar o jogo">🔄 Reiniciar</button>
-            <button id="pauseBtn" class="btn" title="Pausar/Retomar a simulação">⏸️ Pausar</button>
-            
             <!-- Controles de Velocidade -->
             <div class="velocity-controls">
                 <button id="decreaseVelocityBtn" class="btn btn-velocity" title="Diminuir velocidade">🔽</button>
@@ -46,6 +43,16 @@
             </div>
 
             <span id="winner" class="winner-text"></span>
+        </div>
+
+        <div class="legal-dock" aria-label="Links legais">
+            <a href="sobre.html">Sobre</a>
+            <span aria-hidden="true">•</span>
+            <a href="contato.html">Contato</a>
+            <span aria-hidden="true">•</span>
+            <a href="privacidade.html">Privacidade</a>
+            <span aria-hidden="true">•</span>
+            <a href="termos.html">Termos</a>
         </div>
 
         <!-- Tela de Vitória (Modal) -->
@@ -61,11 +68,6 @@
                     </p>
                     <p class="victory-subtitle">Dominou toda a tela</p>
                     <p class="victory-countdown">Reiniciando em <span id="victoryCountdown">5</span>s</p>
-                </div>
-                <div class="victory-footer">
-                    <button id="victoryRestartBtn" class="victory-btn">
-                        🔄 Jogar Novamente
-                    </button>
                 </div>
             </div>
         </div>
