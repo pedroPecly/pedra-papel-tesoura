@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aplicação visual automática de Pedra, Papel e Tesoura com emojis se movendo pela tela">
+    <title>Pedra, Papel e Tesoura</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <canvas id="gameCanvas"></canvas>
+        
+        <!-- Painel de Estatísticas -->
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-emoji">🪨</div>
+                <div class="stat-label">Pedras:</div>
+                <div class="stat-count" id="stoneCount">30</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-emoji">📄</div>
+                <div class="stat-label">Papéis:</div>
+                <div class="stat-count" id="paperCount">30</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-emoji">✂️</div>
+                <div class="stat-label">Tesouras:</div>
+                <div class="stat-count" id="scissorsCount">30</div>
+            </div>
+        </div>
+
+        <!-- Painel de Controles -->
+        <div class="controls live-controls">
+            <span id="connectionStatus" class="connection-status">Conectando...</span>
+            <span id="winner" class="winner-text"></span>
+        </div>
+
+        <div class="legal-dock" aria-label="Links legais">
+            <a href="sobre.html">Sobre</a>
+            <span aria-hidden="true">•</span>
+            <a href="contato.html">Contato</a>
+            <span aria-hidden="true">•</span>
+            <a href="privacidade.html">Privacidade</a>
+            <span aria-hidden="true">•</span>
+            <a href="termos.html">Termos</a>
+        </div>
+
+        <div class="live-panel" id="livePanel" aria-label="Painel ao vivo">
+            <button id="toggleLivePanelBtn" class="panel-tab" type="button" aria-controls="livePanelContent" aria-expanded="true" aria-label="Ocultar painel">></button>
+            <div class="live-panel-content" id="livePanelContent">
+                <div class="round-panel">
+                    <div class="round-title">Rodada <span id="roundId">-</span></div>
+                    <div class="round-status" id="roundStatus">Aguardando...</div>
+                    <div class="round-timer" id="roundTimer"></div>
+                    <div class="round-balance">Saldo: <span id="balanceValue">0</span></div>
+                </div>
+
+                <div class="bet-panel">
+                    <div class="bet-options">
+                        <button class="bet-btn" data-bet="0">Pedra</button>
+                        <button class="bet-btn" data-bet="1">Papeis</button>
+                        <button class="bet-btn" data-bet="2">Tesoura</button>
+                    </div>
+                    <div class="bet-controls">
+                        <input id="betAmount" type="number" min="1" step="1" value="50">
+                        <button id="placeBetBtn" class="btn" type="button">Apostar</button>
+                    </div>
+                    <div class="bet-feedback" id="betFeedback"></div>
+                </div>
+
+                <div class="chat-panel">
+                    <div class="chat-messages" id="chatMessages"></div>
+                    <form id="chatForm" class="chat-form">
+                        <input id="chatInput" type="text" maxlength="160" placeholder="Digite sua mensagem" autocomplete="off">
+                        <button class="btn" type="submit">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tela de Vitória (Modal) -->
+        <div id="victoryModal" class="victory-modal hidden">
+            <div class="victory-content">
+                <div class="victory-header">
+                    <h1>🎉 VITÓRIA! 🎉</h1>
+                </div>
+                <div class="victory-body">
+                    <div class="victory-emoji" id="victoryEmoji"></div>
+                    <p class="victory-message">
+                        <span id="victoryType"></span> venceu!
+                    </p>
+                    <p class="victory-subtitle">Dominou toda a tela</p>
+                    <p class="victory-countdown">Reiniciando em <span id="victoryCountdown">5</span>s</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/constants.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
