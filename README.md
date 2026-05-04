@@ -1,65 +1,42 @@
-# Pedra, Papel e Tesoura - Simulação Visual Automática
+# Pedra, Papel e Tesoura - Arena Ao Vivo
 
-Uma aplicação web interativa que simula uma batalha automática entre emojis de Pedra, Papel e Tesoura. Os emojis se movem aleatoriamente pela tela, colidem fisicamente e se transformam de acordo com as regras do jogo.
+Arena ao vivo de Pedra, Papel e Tesoura com simulacao autoritativa no servidor, chat e apostas com pontos virtuais.
 
-## 🎮 Características
+## 🎮 Caracteristicas
 
-- **30 emojis de cada tipo** (🪨 Pedra, 📄 Papel, ✂️ Tesoura) se movendo aleatoriamente
-- **Colisões realistas** com física de impulso e bounce nas bordas
-- **Transformações automáticas** quando um tipo colide com outro
-- **Colisões entre iguais** - Emojis do mesmo tipo também colidem e se repelem
-- **Tela de vitória** - Modal elegante e animado quando um tipo vencer
-- **Controle com mouse** - Clique e arraste um emoji para controlá-lo manualmente
+- **Arena ao vivo sincronizada** para todos os clientes
+- **Simulacao autoritativa** no servidor com snapshots
+- **Chat em tempo real** com rate limit basico
+- **Apostas com pontos virtuais** por rodada
+- **Tela de vitoria** com modal
 - **Contador em tempo real** de cada tipo
-- **Detector de vencedor** quando um tipo domina a tela
-- **Controles de velocidade** com indicador percentual
-- **Design responsivo** que funciona em qualquer tamanho de tela
-- **Performance otimizada** com Canvas 2D
+- **Design responsivo** para desktop, tablet e mobile
 
 ## 📋 Estrutura do Projeto
 
 ```
 pedra papel tesoura/
-├── index.html              # Arquivo principal HTML
-├── css/
-│   └── style.css          # Estilos da aplicação
-├── js/
-│   ├── constants.js       # Constantes globais
-│   ├── particle.js        # Classe Particle
-│   ├── game.js            # Classe Game (lógica principal)
-│   ├── input-manager.js   # Gerenciador de entrada do mouse
-│   └── main.js            # Inicialização e eventos
-├── .gitignore             # Arquivos a ignorar no git
-└── README.md              # Este arquivo
+├── web/                    # Frontend (HTML, CSS, JS)
+│   ├── index.html
+│   ├── css/
+│   └── js/
+├── server/                 # Backend WebSocket (Node.js)
+│   ├── index.js
+│   ├── package.json
+│   └── README.md
+├── .gitignore
+└── README.md
 ```
 
 ## 🚀 Como Usar
 
-1. Abra `index.html` em um navegador web moderno (Chrome, Firefox, Edge, Safari)
-2. Veja os emojis se movendo aleatoriamente
-3. Observe as transformações quando eles colidem
-4. Aguarde até um tipo vencer e dominar toda a tela
+### Rodar localmente
+1. Acesse a pasta `server`
+2. Instale as dependencias: `npm install`
+3. Inicie o servidor: `npm start`
+4. Abra http://localhost:8080
 
-### Controles
-
-- **🔽/🔼 Velocidade** - Ajusta a velocidade da simulação
-- **Mouse** - Clique e arraste um emoji para controlá-lo com o mouse
-  - Posicione o mouse sobre um emoji (o cursor muda para "grab")
-  - Clique e segure para selecionar
-  - Arraste rapidamente para aumentar a força do arremesso
-  - **Solte para arremessar** - O emoji sai com a velocidade baseada no seu movimento! 🎯
-  - Um halo dourado indica que o emoji está sendo controlado
-  - Emojis controlados não colidem com outros emojis (até serem soltos)
-  - A **direção e velocidade realistas** dependem de como você move o mouse
-
-### Tela de Vitória
-
-Quando um tipo de emoji domina toda a tela:
-
-- ✨ Uma tela de vitória elegante com animações aparece
-- 🎉 O emoji vencedor é exibido em grande tamanho
-- ⏸️ O jogo pausa automaticamente
-- ⏱️ Reinício automático após a contagem regressiva
+O servidor serve o frontend em `/` e o WebSocket em `/ws`.
 
 ## 🎯 Regras do Jogo
 
@@ -72,9 +49,10 @@ Quando dois emojis diferentes colidem, o perdedor se transforma no tipo vencedor
 ## 🔧 Tecnologias
 
 - **HTML5** - Estrutura
-- **CSS3** - Estilos e animações
-- **JavaScript (ES6+)** - Lógica e física
-- **Canvas 2D API** - Renderização
+- **CSS3** - Estilos e animacoes
+- **JavaScript (ES6+)** - Logica e fisica
+- **Node.js** - Servidor e WebSocket
+- **Canvas 2D API** - Renderizacao
 
 ## 📐 Conceitos Implementados
 
@@ -101,19 +79,15 @@ Quando dois emojis diferentes colidem, o perdedor se transforma no tipo vencedor
 - **Constantes centralizadas**: Fácil ajuste de parâmetros
 - **Documentação com JSDoc**: Comentários estruturados
 
-### Input Management (Gerenciamento de Entrada)
+### Sincronizacao Ao Vivo
 
-- **Detecção de clique**: Busca por partícula sob o cursor
-- **Raio de seleção**: Detecta cliques num raio expandido para melhor UX
-- **Arrastar em tempo real**: Movimento suave com o mouse
-- **Feedback visual**: Halo dourado indica seleção
-- **Cursor dinâmico**: Muda entre "auto", "grab" e "grabbing"
-- **Limites de canvas**: Impede movimento fora da tela
-- **Isolamento de colisões**: Partículas controladas não colidem
+- **Simulacao autoritativa** no servidor
+- **Snapshots** enviados aos clientes
+- **Interpolacao** no cliente para suavidade
 
-## ⚙️ Parâmetros Configuráveis
+## ⚙️ Parametros Configuraveis
 
-Edite `js/constants.js` para alterar:
+Edite `web/js/constants.js` para alterar:
 
 ```javascript
 INITIAL_COUNT       // Quantidade inicial de cada tipo (padrão: 30)

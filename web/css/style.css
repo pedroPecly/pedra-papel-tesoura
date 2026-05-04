@@ -149,6 +149,207 @@ canvas {
     max-width: 95vw;
 }
 
+.live-controls {
+    gap: calc(var(--base) * 1.2);
+}
+
+.connection-status {
+    font-size: calc(var(--base) * 0.95);
+    font-weight: 600;
+    color: #93c5fd;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+
+/* ============================================================
+   PAINEL AO VIVO (CHAT E APOSTAS)
+   ============================================================ */
+
+.live-panel {
+    position: absolute;
+    top: calc(var(--base) * 1.5);
+    right: calc(var(--base) * 1.5);
+    width: min(340px, 92vw);
+    z-index: 10;
+    max-height: 70vh;
+}
+
+.panel-tab {
+    position: absolute;
+    top: calc(var(--base) * 1.8);
+    left: calc(var(--base) * -1.1);
+    width: calc(var(--base) * 1.6);
+    height: calc(var(--base) * 3.2);
+    border-radius: calc(var(--base) * 1.0) 0 0 calc(var(--base) * 1.0);
+    background: rgba(15, 23, 42, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #e2e8f0;
+    font-weight: 700;
+    font-size: calc(var(--base) * 1.1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease, background 0.2s ease;
+    z-index: 20;
+}
+
+.panel-tab:hover {
+    background: rgba(30, 41, 59, 0.92);
+    transform: translateX(-2px);
+}
+
+.panel-tab:focus-visible {
+    outline: 2px solid rgba(147, 197, 253, 0.9);
+    outline-offset: 2px;
+}
+
+.live-panel-content {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--base) * 0.8);
+    max-height: 70vh;
+    transition: transform 0.35s ease, opacity 0.25s ease;
+}
+
+body.panel-collapsed .live-panel-content {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(120%);
+}
+
+body.panel-collapsed .panel-tab {
+    position: fixed;
+    left: auto;
+    right: 0;
+    transform: none;
+}
+
+.round-panel,
+.bet-panel,
+.chat-panel {
+    background: rgba(0, 0, 0, 0.82);
+    color: #fff;
+    padding: calc(var(--base) * 0.9);
+    border-radius: calc(var(--base) * 1.0);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.round-title {
+    font-weight: 700;
+    font-size: calc(var(--base) * 1.1);
+}
+
+.round-status {
+    margin-top: 4px;
+    color: #fbbf24;
+    font-weight: 600;
+}
+
+.round-timer {
+    margin-top: 4px;
+    font-size: calc(var(--base) * 0.85);
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.round-balance {
+    margin-top: 8px;
+    font-weight: 700;
+    color: #4ade80;
+}
+
+.bet-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: calc(var(--base) * 0.5);
+}
+
+.bet-btn {
+    background: rgba(102, 126, 234, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: calc(var(--base) * 0.6) calc(var(--base) * 0.4);
+    border-radius: calc(var(--base) * 0.6);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.bet-btn:hover {
+    background: rgba(102, 126, 234, 0.35);
+}
+
+.bet-btn.active {
+    border-color: #4ade80;
+    box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.3);
+}
+
+.bet-controls {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--base) * 0.6);
+    margin-top: calc(var(--base) * 0.7);
+}
+
+#betAmount {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.35);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: calc(var(--base) * 0.5);
+    padding: calc(var(--base) * 0.6);
+    font-weight: 600;
+}
+
+.bet-feedback {
+    margin-top: 6px;
+    min-height: 16px;
+    font-size: calc(var(--base) * 0.8);
+    color: #fbbf24;
+}
+
+.chat-panel {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--base) * 0.6);
+}
+
+.chat-messages {
+    flex: 1;
+    min-height: 140px;
+    max-height: 240px;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: calc(var(--base) * 0.6);
+    padding: calc(var(--base) * 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: calc(var(--base) * 0.85);
+    line-height: 1.4;
+}
+
+.chat-message {
+    margin-bottom: 6px;
+    word-break: break-word;
+}
+
+.chat-form {
+    display: flex;
+    gap: calc(var(--base) * 0.5);
+}
+
+#chatInput {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.35);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: calc(var(--base) * 0.6);
+    padding: calc(var(--base) * 0.6);
+    font-weight: 500;
+}
+
 /* ============================================================
    LINKS LEGAIS (DISCRETOS)
    ============================================================ */
@@ -346,6 +547,32 @@ canvas {
         gap: 6px;
     }
 
+    .live-panel {
+        top: auto;
+        bottom: calc(var(--base) * 5.8);
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(92vw, 420px);
+    }
+
+    .panel-tab {
+        left: calc(var(--base) * -1.2);
+    }
+
+    .live-panel-content {
+        max-height: 52vh;
+    }
+
+    body.panel-collapsed .live-panel-content {
+        transform: translateY(120%);
+    }
+
+
+    .chat-messages {
+        max-height: 160px;
+    }
+
     .btn {
         padding: 6px 12px;
         font-size: 11px;
@@ -391,6 +618,14 @@ canvas {
         left: 8px;
         padding: 10px;
         font-size: 12px;
+    }
+
+    .live-panel {
+        bottom: calc(var(--base) * 6.5);
+    }
+
+    .live-panel-content {
+        max-height: 50vh;
     }
 
     .stat-item {

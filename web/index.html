@@ -31,17 +31,8 @@
         </div>
 
         <!-- Painel de Controles -->
-        <div class="controls">
-            <!-- Controles de Velocidade -->
-            <div class="velocity-controls">
-                <button id="decreaseVelocityBtn" class="btn btn-velocity" title="Diminuir velocidade">🔽</button>
-                <div class="velocity-display">
-                    <span id="velocityLabel">Velocidade:</span>
-                    <span id="velocityValue" class="velocity-value">100%</span>
-                </div>
-                <button id="increaseVelocityBtn" class="btn btn-velocity" title="Aumentar velocidade">🔼</button>
-            </div>
-
+        <div class="controls live-controls">
+            <span id="connectionStatus" class="connection-status">Conectando...</span>
             <span id="winner" class="winner-text"></span>
         </div>
 
@@ -53,6 +44,39 @@
             <a href="privacidade.html">Privacidade</a>
             <span aria-hidden="true">•</span>
             <a href="termos.html">Termos</a>
+        </div>
+
+        <div class="live-panel" id="livePanel" aria-label="Painel ao vivo">
+            <button id="toggleLivePanelBtn" class="panel-tab" type="button" aria-controls="livePanelContent" aria-expanded="true" aria-label="Ocultar painel">></button>
+            <div class="live-panel-content" id="livePanelContent">
+                <div class="round-panel">
+                    <div class="round-title">Rodada <span id="roundId">-</span></div>
+                    <div class="round-status" id="roundStatus">Aguardando...</div>
+                    <div class="round-timer" id="roundTimer"></div>
+                    <div class="round-balance">Saldo: <span id="balanceValue">0</span></div>
+                </div>
+
+                <div class="bet-panel">
+                    <div class="bet-options">
+                        <button class="bet-btn" data-bet="0">Pedra</button>
+                        <button class="bet-btn" data-bet="1">Papeis</button>
+                        <button class="bet-btn" data-bet="2">Tesoura</button>
+                    </div>
+                    <div class="bet-controls">
+                        <input id="betAmount" type="number" min="1" step="1" value="50">
+                        <button id="placeBetBtn" class="btn" type="button">Apostar</button>
+                    </div>
+                    <div class="bet-feedback" id="betFeedback"></div>
+                </div>
+
+                <div class="chat-panel">
+                    <div class="chat-messages" id="chatMessages"></div>
+                    <form id="chatForm" class="chat-form">
+                        <input id="chatInput" type="text" maxlength="160" placeholder="Digite sua mensagem" autocomplete="off">
+                        <button class="btn" type="submit">Enviar</button>
+                    </form>
+                </div>
+            </div>
         </div>
 
         <!-- Tela de Vitória (Modal) -->
@@ -75,9 +99,6 @@
 
     <!-- Scripts -->
     <script src="js/constants.js"></script>
-    <script src="js/particle.js"></script>
-    <script src="js/game.js"></script>
-    <script src="js/input-manager.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

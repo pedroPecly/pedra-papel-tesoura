@@ -13,6 +13,10 @@ const TYPES = {
 // Emojis correspondentes aos tipos
 const EMOJIS = ['🪨', '📄', '✂️'];
 
+// Tamanho canonico da arena (mundo do servidor)
+const WORLD_WIDTH = 1200;
+const WORLD_HEIGHT = 800;
+
 // Quantidade inicial de cada tipo
 const INITIAL_COUNT = 30;
 
@@ -53,6 +57,8 @@ function updateResponsiveScale(width, height) {
 
 // Exportar para escopo global (disponível às outras scripts no navegador)
 window.updateResponsiveScale = updateResponsiveScale;
+window.WORLD_WIDTH = WORLD_WIDTH;
+window.WORLD_HEIGHT = WORLD_HEIGHT;
 
 // Configuração de FPS (requestAnimationFrame é ~60fps)
 const FPS_TARGET = 60;
